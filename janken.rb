@@ -8,7 +8,6 @@ def result(winer)
     puts "あなた:「#{@your_hoi_name}」 相手:「#{@partners_hoi_name}」"
     puts "もう一度最初から！\n--------------------------"
     janken
-   
   end
 end
 
@@ -65,7 +64,6 @@ def janken(message = "じゃんけん......\n ")
     hoi_flag = 0
     hoi(hoi_flag)
     
-  
   elsif your_hand == partners_hand  # あいこの場合  
     janken("あいこです！\nあいこで......\n ")
   
@@ -74,7 +72,6 @@ def janken(message = "じゃんけん......\n ")
       puts "戦わないことを選んだため、あなたは負けました!"
       exit
       
-    
     else  # あなたがじゃんけんで負けた場合
       puts "あなた:#{weapons[your_hand.to_i]}"
       puts "相手:#{weapons[partners_hand.to_i]}\n"
@@ -85,6 +82,5 @@ def janken(message = "じゃんけん......\n ")
     end
   end
 end
-
 
 janken
