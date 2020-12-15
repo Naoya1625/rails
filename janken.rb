@@ -1,4 +1,4 @@
-#あっちむいてほいの判定メソッド
+# あっち向いてホイの判定を行うメソッド
 def result(winer) 
   if ( @your_hoi_name == @partners_hoi_name)
     puts "あなた:「#{@your_hoi_name}」 相手:「#{@partners_hoi_name}」"
@@ -12,8 +12,9 @@ def result(winer)
   end
 end
 
-#hoi_flagを渡す: じゃんけんにあなた→　0勝ち　１あいこ　２負け
-def hoi(flag) #メソッド呼び出しで引数を渡すこと！
+# あっち向いてホイを行うメソッド
+# flag: 0=勝ち,１=あいこ,２=負け
+def hoi(flag)
   puts "あっちむいて....."
   puts "0(上), 1(右), 2(左), 3(右)"
   your_hoi = gets.chomp
@@ -37,42 +38,45 @@ def hoi(flag) #メソッド呼び出しで引数を渡すこと！
     when 1 #あなたがジャンケンに負けた場合のあっち向いてホイ
       result("相手")
   end
-
 end
-#-----------------------------------------------------------
+
+# じゃんけんを行うメソッド
 def janken(message = "じゃんけん......\n ")
   puts message
-  
   puts "0(グー) 1(チョキ) 2(パー) 3(戦わない)"
-  
   your_hand = gets.chomp.to_s
   puts "--------------------------"
   partners_hand = %w[ 0 1 2 ].sample
   
+  #選択肢以外の入力をした場合にもう一度入力してもらう。
   until your_hand == "0" || your_hand == "1" || your_hand == "2" || your_hand == "3"
-  
-    puts "そんな選択肢はありませんよ！\nもう一度入力してください！"
-    puts "じゃんけん......"
+    puts "そんな選択肢はありませんよ！\nもう一度入力してください！\nじゃんけん......\n "
     puts "0(グー) 1(チョキ) 2(パー) 3(戦わない)"
     your_hand = gets.chomp.to_s
-  
   end
   
   weapons = [ "グー", "チョキ", "パー" ]
   
+  # あなたが勝利した場合
   if (your_hand == "0" && partners_hand == "1") || (your_hand == "1" && partners_hand == "2") || (your_hand == "2" && partners_hand == "0") 
     puts "あなた:#{weapons[your_hand.to_i]}"
     puts "相手:#{weapons[partners_hand.to_i]}\n"
     puts "あなたはジャンケンに勝利しました！\n次はあっち向いてホイだ！"
     hoi_flag = 0
     hoi(hoi_flag)
+    
+  # あいこの場合  
   elsif your_hand == partners_hand
     janken("あいこです！\nあいこで......\n ")
-  
+    
+  # あなたが負けた場合
   else
+    #戦わないことを選んだ場合
     if your_hand == "3"
       puts "戦わないことを選んだため、あなたは負けました!"
       exit
+      
+    # じゃんけんで負けた場合
     else
       puts "あなた:#{weapons[your_hand.to_i]}"
       puts "相手:#{weapons[partners_hand.to_i]}\n"
